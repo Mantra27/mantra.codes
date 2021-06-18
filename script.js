@@ -6,7 +6,7 @@ const menuToggle = document.querySelector('.toggle');
         showcase.classList.toggle('active');
       })
       
-      //! bg
+      //! bg JS
       const STAR_COUNT = ( window.innerWidth + window.innerHeight ) / 10,
       STAR_SIZE = 3,
       STAR_MIN_SCALE = 0.2,
@@ -15,7 +15,7 @@ const menuToggle = document.querySelector('.toggle');
       const canvas = document.querySelector( 'canvas' ),
       context = canvas.getContext( '2d' );
       
-      let scale = 1, // device pixel ratio
+      let scale = 1,
       width,
       height;
       
