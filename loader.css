@@ -208,16 +208,12 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  min-height: 100vh;
-  background: #242424;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body {-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 body .dribbble {
   position: fixed;
