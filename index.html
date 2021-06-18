@@ -39,7 +39,7 @@
     <!-- partial -->
       </div>
 <!-- //!loader -->
-<div id='info'>
+
 <!-- dribbble -->
 <a class="dribbble" href="https://dribbble.com/shots/5878367-Loaders" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt=""></a>
 <!-- partial:index.partial.html -->
@@ -55,9 +55,9 @@
     <video src="https://traversymedia.com/downloads/videos/explore.mp4" muted loop autoplay></video>
     <div class="overlay"></div>
     <div class="text">
-      <h3>I am,</h3> 
-      <h2 id='name'>Mantra<h4>#7777</h4></h2>
-      <p>I'm backend WEB DEVELOPER from India 👨‍💻</p>
+      <h2 id='im'>I am,</h2> 
+      <h2 id='name'>Mantra<h4 id='hash'>#7777</h4></h2>
+      <p>I'm backend web developer from India 👨‍💻</p>
       <p>Worked with socket.io, puppeteer.js, discord.js and APIs etc.</p>
       <a href="https://github.com/Mantra27">Github</a>
     </div>
@@ -77,12 +77,15 @@
   <script src="./script.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    $('#info').hide();
-    $(window).on('load', function () {
-    $('#cont').hide();
-    $('#info').show();
-    $('#op').remove();
-  }) 
+    function hashcode(){
+      document.getElementById('hash').style.content = 'discord tag'
+    }
+  //   $('#info').hide();
+  //   $(window).on('load', function () {
+  //   $('#cont').hide();
+  //   $('#info').show();
+  //   $('#op').remove();
+  // }) 
   const iconclick = document.getElementById('insta_icon')
       iconclick.addEventListener('click', ()=>{
         $('#cont').show();
