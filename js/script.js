@@ -24,7 +24,7 @@ const menuToggle = document.querySelector('.toggle');
       let pointerX,
       pointerY;
       
-      let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.005 };
+      let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.007 };
      
       let touchInput = false;
       
