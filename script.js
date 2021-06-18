@@ -5,30 +5,30 @@ const menuToggle = document.querySelector('.toggle');
         menuToggle.classList.toggle('active');
         showcase.classList.toggle('active');
       })
-
+      
       //! bg
-      const STAR_COUNT = ( window.innerWidth + window.innerHeight ) / 8,
+      const STAR_COUNT = ( window.innerWidth + window.innerHeight ) / 10,
       STAR_SIZE = 3,
       STAR_MIN_SCALE = 0.2,
       OVERFLOW_THRESHOLD = 50;
-
-const canvas = document.querySelector( 'canvas' ),
+      
+      const canvas = document.querySelector( 'canvas' ),
       context = canvas.getContext( '2d' );
+      
+      let scale = 1, // device pixel ratio
+      width,
+      height;
+      
+      let stars = [];
 
-let scale = 1, // device pixel ratio
-    width,
-    height;
-
-let stars = [];
-
-let pointerX,
-    pointerY;
-
-let velocity = { x: 0.005, y: 0, tx: 0, ty: 0, z: 0.0005 };
-
-let touchInput = false;
-
-generate();
+      let pointerX,
+      pointerY;
+      
+      let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.005 };
+     
+      let touchInput = false;
+      
+      generate();
 resize();
 step();
 
