@@ -138,7 +138,8 @@ function update() {
   velocity.tx *= 0.96;
   velocity.ty *= 0.96;
 
-  velocity.x += 0.009
+  velocity.x += 0.0001
+  velocity.z += 1
   velocity.y += ( velocity.ty - velocity.y ) * 0.8;
 
   stars.forEach( ( star ) => {
