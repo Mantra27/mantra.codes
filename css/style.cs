@@ -196,10 +196,6 @@ header .logo {
   display: flex;
 }
 #hash {
-  padding-bottom: 3vh;
-  display: flex;
-  font-size: 4vh;
-  height: 10px;
   transition: 0.5s;
   color: rgb(87, 87, 87);
 }
@@ -215,7 +211,7 @@ header .logo {
 }
 #hash:hover:after {
   letter-spacing: 4px;
-  content: " Discord";
+  content: " Discord tag";
 }
 .text {
   padding-left: 2%;
