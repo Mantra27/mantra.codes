@@ -215,7 +215,7 @@ header .logo {
 }
 #hash:hover:after {
   letter-spacing: 4px;
-  content: " Discord tag";
+  content: " Discord";
 }
 .text {
   padding-left: 2%;
