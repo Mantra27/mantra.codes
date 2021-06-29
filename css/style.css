@@ -207,7 +207,7 @@ header .logo {
 #hash:hover {
   letter-spacing: 4px;
   transition: 0.5s;
-  content: " Discord";
+  content: "";
   color: rgb(255, 255, 255);
 }
 #hash::before {
@@ -215,7 +215,7 @@ header .logo {
 }
 #hash:hover:after {
   letter-spacing: 4px;
-  content: " Discord";
+  content: "";
 }
 .text {
   padding-left: 2%;
