@@ -7,7 +7,7 @@
 }
 body {
   font-size: 3vh;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 #im {
   font-size: 6vh;
@@ -15,11 +15,15 @@ body {
   height: 100%;
 }
 #emot{
+  padding-left: 7px;
   animation-name: wave-animation;
   animation-duration: 2.5s;
   animation-iteration-count: infinite;
   transform-origin: 70% 70%;
   display: inline-block;
+}
+#info{
+  font-size: 20px;
 }
 @keyframes wave-animation {
   0% {
@@ -109,6 +113,9 @@ header .logo {
   background: #03a9f4;
   mix-blend-mode: overlay;
 }
+#rem{
+font-size: 15px;
+}
 .text {
   position: relative;
   z-index: 10;
@@ -196,32 +203,34 @@ header .logo {
   display: flex;
 }
 #hash {
+  right: 1000px;
   padding-bottom: 3vh;
   display: flex;
-  font-size: 4vh;
+  font-size: 3.5vh;
   height: 10px;
   transition: 0.5s;
   color: rgb(87, 87, 87);
 }
 
 #hash:hover {
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   transition: 0.5s;
-  content: " Discord tag";
   color: rgb(255, 255, 255);
 }
 #hash::before {
   transition: 01s;
 }
 #hash:hover:after {
-  letter-spacing: 4px;
-  content: " Discord tag";
+  content: '- Discord';
+  letter-spacing: 2px;
+
 }
 .text {
   padding-left: 2%;
 }
 
 body {
+  overflow: hidden;
   -webkit-touch-callout: none;
   -khtml-user-select: none;
   padding-right: 1000px;
