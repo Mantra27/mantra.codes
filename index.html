@@ -8,7 +8,6 @@
   <title>mantra()</title>
   
   <link rel="stylesheet" href="./css/style.css">
-  <link id='op' rel="stylesheet" href="./loader.css">
 
   <!-- !icon -->
   <link rel = "icon" href ="/img/icon.png" type = "image/x-icon">
@@ -19,7 +18,7 @@
     <canvas class='showcase'></canvas>
     <header>
       <div id='head'>
-      <h2 class="logo">howdy</h2>
+      <h2 class="logo" id='greet' ></h2>
       <h2 id='emot'>👋</h2>
     </div>
       <div class="toggle"></div>
@@ -27,9 +26,12 @@
     <div class="overlay"></div>
     <div class="text">
       <h2 id='im'>I am</h2> 
-      <h2 id='name'>Mantra<h4 id='hash'>#7777</h4></h2>
+      <h2 id='name'>Mantra<h5 id='hash'>#7777</h5></h2>
+      <div id='info'>
       <p>A backend Javascript developer based in India 👨‍💻</p>
       <p>Worked with socket.io, puppeteer.js, discord.js, APIs etc.</p>
+      </div>
+      <p id='rem'></p>
       <a href="https://github.com/Mantra27">Github</a>
     </div>
     <ul class="social">
@@ -41,7 +43,7 @@
     <ul>
       <li><a href="https://www.instagram.com/mantra.27/">Instagram</a></li>
       <li><a href="https://steamcommunity.com/profiles/76561199110254278/">Steam</a></li>
-<li><a href="https://m.youtube.com/watch?v=dQw4w9WgXcQ&feature=youtu.be">*get a free bitcoin here</a></li>
+<li><a href="https://m.youtube.com/watch?v=dQw4w9WgXcQ&feature=youtu.be">*Get a free bitcoin</a></li>
      
     </ul>
   </div>
@@ -49,7 +51,17 @@
   <script src="./js/script.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-//!dont remove this tag
+  
+    //?greet
+      $('#greet').text('કેમ છો?')
+      setTimeout(()=>{
+      $('#greet').fadeOut('slow')
+      setTimeout(()=>{
+        $('#greet').text('HOWDY')
+      }, 460)
+      $('#greet').fadeIn('slow')
+      }, 3000)
+      
     </script>
     </div>
 </body>
