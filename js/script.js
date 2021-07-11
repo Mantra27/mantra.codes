@@ -12,8 +12,8 @@ const menuToggle = document.querySelector('.toggle');
       STAR_MIN_SCALE = 0.2,
       OVERFLOW_THRESHOLD = 50;
       
-      const canvas = document.querySelector( 'canvas' ),
-      const canvas2 = document;
+      const canvas = document.querySelector( 'canvas' )
+      const canvas2 = document
       context = canvas.getContext( '2d' );
       
       let scale = 1,
@@ -139,7 +139,7 @@ function update() {
   velocity.tx *= 0.96;
   velocity.ty *= 0.96;
 
-  velocity.x += 0.009
+  velocity.x += ( velocity.tx - velocity.x ) * 0.8;
   velocity.y += ( velocity.ty - velocity.y ) * 0.8;
 
   stars.forEach( ( star ) => {
