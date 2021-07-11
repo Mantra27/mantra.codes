@@ -1,257 +1,232 @@
-@import url("/fonts/font.css");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-body {
-  font-size: 3vh;
-  overflow-y: hidden;
-}
-#im {
-  font-size: 6vh;
-  width: 100%;
-  height: 100%;
-}
-#emot{
-  padding-left: 7px;
-  animation-name: wave-animation;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
-}
-#info{
-  font-size: 20px;
-}
-@keyframes wave-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  15% {
-    transform: rotate(14deg);
-  }
-  30% {
-    transform: rotate(-8deg);
-  }
-  40% {
-    transform: rotate(14deg);
-  }
-  50% {
-    transform: rotate(-4deg);
-  }
-  60% {
-    transform: rotate(10deg);
-  }
-  70% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+const menuToggle = document.querySelector('.toggle');
+      const showcase = document.querySelector('.showcase');
+
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        showcase.classList.toggle('active');
+      })
+      
+      //! bg JS
+      const STAR_COUNT = ( window.innerWidth + window.innerHeight ) / 10,
+      STAR_SIZE = 3,
+      STAR_MIN_SCALE = 0.2,
+      OVERFLOW_THRESHOLD = 50;
+      
+      const canvas = document.querySelector( 'canvas' )
+      const canvas2 = document
+      context = canvas.getContext( '2d' );
+      
+      let scale = 1,
+      width,
+      height;
+      
+      let stars = [];
+
+      let pointerX,
+      pointerY;
+      
+      let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.007 };
+     
+      let touchInput = false;
+      
+      generate();
+resize();
+step();
+
+window.onresize = resize;
+canvas2.onmousemove = onMouseMove;
+canvas2.ontouchmove = onTouchMove;
+canvas2.ontouchend = onMouseLeave;
+document.onmouseleave = onMouseLeave;
+
+function generate() {
+
+   for( let i = 0; i < STAR_COUNT; i++ ) {
+    stars.push({
+      x: 0,
+      y: 0,
+      z: STAR_MIN_SCALE + Math.random() * ( 1 - STAR_MIN_SCALE )
+    });
+   }
+
 }
 
-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 40px 100px;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header .logo {
+function placeStar( star ) {
 
-  color: #fff;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.toggle {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url(/img/menu.png);
-  background-repeat: no-repeat;
-  background-size: 40;
-  background-position: center;
-  cursor: pointer;
-}
-.toggle.active {
-  width: 60px;
-  height: 60px;
-  background: url(/img/cross.png);
-  background-repeat: no-repeat;
-  background-size: 40;
-  background-position: center;
-  cursor: pointer;
-}
-.showcase {
-  position: absolute;
-  right: 0;
-  width: 100%;
-  min-height: 100vh;
-  padding: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgb(0, 0, 0);
-  transition: 0.5s;
-  z-index: 2;
-}
-.showcase.active {
-  right: 300px;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #03a9f4;
-  mix-blend-mode: overlay;
-}
-#rem{
-font-size: 15px;
-}
-.text {
-  position: relative;
-  z-index: 10;
+  star.x = Math.random() * width;
+  star.y = Math.random() * height;
+
 }
 
-.text h2 {
-  font-size: 5em;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1em;
-  text-transform: uppercase;
-}
-.text h3 {
-  font-size: 4em;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1em;
-  text-transform: uppercase;
-}
-.text p {
-  font-size: 1.1em;
-  color: #fff;
-  margin: 20px 0;
-  font-weight: 400;
-  max-width: 700px;
-}
-.text a {
-  display: inline-block;
-  font-size: 1em;
-  background: #fff;
-  padding: 10px 30px;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 500;
-  margin-top: 10px;
-  color: #111;
-  letter-spacing: 2px;
-  transition: 0.2s;
-}
-.text a:hover {
+function recycleStar( star ) {
+
+  let direction = 'z';
+
+  let vx = Math.abs( velocity.x ),
+	    vy = Math.abs( velocity.y );
+
+  if( vx > 1 || vy > 1 ) {
+    let axis;
+
+    if( vx > vy ) {
+      axis = Math.random() < vx / ( vx + vy ) ? 'h' : 'v';
+    }
+    else {
+      axis = Math.random() < vy / ( vx + vy ) ? 'v' : 'h';
+    }
+
+    if( axis === 'h' ) {
+      direction = velocity.x > 0 ? 'l' : 'r';
+    }
+    else {
+      direction = velocity.y > 0 ? 't' : 'b';
+    }
+  }
   
-  background-color: #000000;
-  letter-spacing: 6px;
-}
+  star.z = STAR_MIN_SCALE + Math.random() * ( 1 - STAR_MIN_SCALE );
 
-.menu {
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.menu ul {
-  position: relative;
-}
-.menu ul li {
-  list-style: none;
-}
-.menu ul li a {
-  text-decoration: none;
-  font-size: 24px;
-  color: rgb(0, 0, 0);
-}
-.menu ul li a:hover {
-  color: #03a9f4;
-}
-
-@media (max-width: 991px) {
-  .showcase,
-  .showcase header {
-    padding: 40px;
+  if( direction === 'z' ) {
+    star.z = 0.1;
+    star.x = Math.random() * width;
+    star.y = Math.random() * height;
   }
-  .text h2 {
-    font-size: 3em;
+  else if( direction === 'l' ) {
+    star.x = -OVERFLOW_THRESHOLD;
+    star.y = height * Math.random();
   }
-  .text h3 {
-    font-size: 2em;
+  else if( direction === 'r' ) {
+    star.x = width + OVERFLOW_THRESHOLD;
+    star.y = height * Math.random();
   }
-}
-#head{
-  display: flex;
-}
-#hash {
-  right: 1000px;
-  padding-bottom: 3vh;
-  display: flex;
-  font-size: 3.5vh;
-  height: 10px;
-  transition: 0.5s;
-  color: rgb(87, 87, 87);
-}
-
-#hash:hover {
-  letter-spacing: 2px;
-  transition: 0.5s;
-  color: rgb(255, 255, 255);
-}
-#hash::before {
-  transition: 01s;
-}
-#hash:hover:after {
-  content: '- Discord';
-  letter-spacing: 2px;
+  else if( direction === 't' ) {
+    star.x = width * Math.random();
+    star.y = -OVERFLOW_THRESHOLD;
+  }
+  else if( direction === 'b' ) {
+    star.x = width * Math.random();
+    star.y = height + OVERFLOW_THRESHOLD;
+  }
 
 }
-.text {
-  padding-left: 2%;
+
+function resize() {
+
+  scale = window.devicePixelRatio || 1;
+
+  width = window.innerWidth * scale;
+  height = window.innerHeight * scale;
+
+  canvas.width = width;
+  canvas.height = height;
+
+  stars.forEach( placeStar );
+
 }
 
-body {
-  overflow: hidden;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  padding-right: 1000px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: rgb(255, 255, 255);
-  background-image: radial-gradient(
-      circle at top right,
-      rgba(121, 68, 154, 0.13),
-      transparent
-    ),
-    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent);
-}
-canvas {
-  position: relative;
-  width: 100%;
-  height: 100%;
+function step() {
+
+  context.clearRect( 0, 0, width, height );
+
+  update();
+  render();
+
+  requestAnimationFrame( step );
+
 }
 
-a:hover {
-  color: #fff;
+function update() {
+
+  velocity.tx *= 0.96;
+  velocity.ty *= 0.96;
+
+  velocity.x += ( velocity.tx - velocity.x ) * 0.8;
+  velocity.y += ( velocity.ty - velocity.y ) * 0.8;
+
+  stars.forEach( ( star ) => {
+
+    star.x += velocity.x * star.z;
+    star.y += velocity.y * star.z;
+
+    star.x += ( star.x - width/2 ) * velocity.z * star.z;
+    star.y += ( star.y - height/2 ) * velocity.z * star.z;
+    star.z += velocity.z;
+  
+    // recycle when out of bounds
+    if( star.x < -OVERFLOW_THRESHOLD || star.x > width + OVERFLOW_THRESHOLD || star.y < -OVERFLOW_THRESHOLD || star.y > height + OVERFLOW_THRESHOLD ) {
+      recycleStar( star );
+    }
+
+  } );
+
 }
+
+function render() {
+
+  stars.forEach( ( star ) => {
+
+    context.beginPath();
+    context.lineCap = 'round';
+    context.lineWidth = STAR_SIZE * star.z * scale;
+    context.strokeStyle = 'rgba(255,255,255,'+(0.5 + 0.5*Math.random())+')';
+
+    context.beginPath();
+    context.moveTo( star.x, star.y );
+
+    var tailX = velocity.x * 2,
+        tailY = velocity.y * 2;
+
+    // stroke() wont work on an invisible line
+    if( Math.abs( tailX ) < 0.1 ) tailX = 0.5;
+    if( Math.abs( tailY ) < 0.1 ) tailY = 0.5;
+
+    context.lineTo( star.x + tailX, star.y + tailY );
+
+    context.stroke();
+
+  } );
+
+}
+
+function movePointer( x, y ) {
+
+  if( typeof pointerX === 'number' && typeof pointerY === 'number' ) {
+
+    let ox = x - pointerX,
+        oy = y - pointerY;
+
+    velocity.tx = velocity.tx + ( ox / 8*scale ) * ( touchInput ? 1 : -1 );
+    velocity.ty = velocity.ty + ( oy / 8*scale ) * ( touchInput ? 1 : -1 );
+
+  }
+
+  pointerX = x;
+  pointerY = y;
+
+}
+
+function onMouseMove( event ) {
+
+  touchInput = false;
+
+  movePointer( event.clientX, event.clientY );
+
+}
+
+function onTouchMove( event ) {
+
+  touchInput = true;
+
+  movePointer( event.touches[0].clientX, event.touches[0].clientY, true );
+
+  event.preventDefault();
+
+}
+
+function onMouseLeave() {
+
+  pointerX = null;
+  pointerY = null;
+
+}
+
+
