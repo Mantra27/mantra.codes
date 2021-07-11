@@ -13,6 +13,7 @@ const menuToggle = document.querySelector('.toggle');
       OVERFLOW_THRESHOLD = 50;
       
       const canvas = document.querySelector( 'canvas' ),
+      const canvas2 = document;
       context = canvas.getContext( '2d' );
       
       let scale = 1,
@@ -33,9 +34,9 @@ resize();
 step();
 
 window.onresize = resize;
-canvas.onmousemove = onMouseMove;
-canvas.ontouchmove = onTouchMove;
-canvas.ontouchend = onMouseLeave;
+canvas2.onmousemove = onMouseMove;
+canvas2.ontouchmove = onTouchMove;
+canvas2.ontouchend = onMouseLeave;
 document.onmouseleave = onMouseLeave;
 
 function generate() {
