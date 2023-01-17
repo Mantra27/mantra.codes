@@ -1,9 +1,9 @@
 let writer = document.getElementById("terminal")
 let count = 0;
 let _string = "\xa0cd Desktop/code";
-let typingSpeed = 40
+let typingSpeed = 30 //lower the ammount = faster the type
 let _current;
-
+let zoomSpeed
 
 
 
@@ -49,23 +49,6 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     let _firstHalf = new Promise((res, rej)=>{
         let _interval = setInterval(async ()=>{
@@ -181,25 +164,71 @@ function dragElement(elmnt) {
     })
     _exitPromiseHell.then(()=>{
         console.log("pkg downloaded");
+    
+        let data = [];
+        let finalValue = 180;
+        let k = 1;
 
-        var data = [],
-        n = 100000,
-        a = 180,
-        b = 1.3;
-        for (var k = 0; k < n; k++) {
-            data.push({x: 0.01 * k, y: a * Math.pow(b, -0.006 * k)});
-        }
+        while(finalValue >= 1){
+            finalValue = 100 * Math.pow(0.98, k)
+            data.push({y: finalValue+80});
+            k++;
+        };
 
-        let count = 0;
-            let zoomer = setInterval(()=>{
-                if(data[count].y<5){
-                    clearInterval(zoomer);
-                    console.log("end of the zoom")
-                }
-                camera.fov = data[count].y
-                camera.updateProjectionMatrix();
-                count++;
-            }, 3)
+        let i = 0;
+        const cache = setInterval(() => {
+            if(data[i] == undefined){ clearInterval(cache)}
+            console.log(data[i].y)
+            camera.fov = data[i].y
+            camera.updateProjectionMatrix();
+            i++;
+        }, 10);
+
+        // let counter = 0;
+        
+        // while(data[counter] != undefined){
+        //     if(counter%3 == 0){
+        //         console.log(data[counter]);
+        //         camera.fov = data[counter].y;
+        //         camera.updateProjectionMatrix();
+        //         counter++
+        //     }
+            
+        // }
+        
+        console.log(data.length)
+        // while(data[counter] != undefined){
+        //         camera.fov = data[count].y
+        //         console.log(camera.fov)
+        // }
+        // let count = 0;
+        //     let zoomer = setInterval(()=>{
+
+        //         if(data[count].y<80){
+        //             console.log("end of the zoom");
+        //             clearInterval(zoomer);
+        //             count = 0;
+        //             data = [];
+
+        //             // for (var k = 0; k < n; k++) {
+        //             //     data.push({y: 2.718 ^ - Math.pow(b, -0.006 * k)});
+        //             // }
+
+        //             // const miniInterval = setInterval(()=>{
+
+        //             //     camera.fov = data[count].y
+        //             //     console.log(camera.fov)
+        //             //     camera.updateProjectionMatrix();
+        //             //     count++;
+
+        //             // }, 3);
+                    
+        //         }
+        //         camera.fov = data[count].y
+        //         console.log(camera.fov)
+        //         camera.updateProjectionMatrix();
+        //         count++;
+        //     }, 0)
             setTimeout(()=>{
                 $("#window").fadeOut(600);
             }, 1000)
@@ -299,9 +328,6 @@ function dragElement(elmnt) {
                     document.webkitExitFullscreen();
                 }
         }
-          
-
-         
 
         // var el = document.documentElement
         //     , rfs = // for newer Webkit and Firefox
@@ -330,6 +356,8 @@ function dragElement(elmnt) {
     import { RenderPass } from "https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/RenderPass.js";
     import { ShaderPass } from "https://cdn.skypack.dev/three@0.124.0/examples/jsm/postprocessing/ShaderPass.js";
     import gsap from "https://cdn.skypack.dev/gsap@3.6.0";
+    
+    console.log(OrbitControls)
     const calcAspect = (el) => el.clientWidth / el.clientHeight;
     const getNormalizedMousePos = (e) => {
         return {
@@ -350,7 +378,8 @@ function dragElement(elmnt) {
         bufferGeometry.setAttribute("aCenter", new THREE.BufferAttribute(aCenter, 3));
     };
 
-    const gridIcosahedronTextureUrl = `https://i.loli.net/2021/03/09/1Cglerjx3yLauOo.jpg`;
+    // const gridIcosahedronTextureUrl = `https://i.loli.net/2021/03/09/1Cglerjx3yLauOo.jpg`;
+    const gridIcosahedronTextureUrl = "https://i.ibb.co/8PxhSfK/resized.jpg"
     const gridIcosahedronShapeVertexShader = `
     #define GLSLIFY 1
     //
@@ -801,7 +830,7 @@ function dragElement(elmnt) {
                 near: -100,
                 far: 1000
             };
-            this.cameraPosition = new THREE.Vector3(0, 3, 10);
+            this.cameraPosition = new THREE.Vector3(0, 0, 0);
             this.lookAtPosition = new THREE.Vector3(0, 0, 0);
             this.rendererParams = {
                 outputEncoding: THREE.LinearEncoding,
