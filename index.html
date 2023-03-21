@@ -19,10 +19,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel='stylesheet' href='./style.min.css'>
-  <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
+    <style>
+
+body{
+    font-size: 15px; /* calc(4.92308px + 5.69231vw) */
+                    /* calc(12.92308px + 1.69231vw) */
+    background-color: #464646;
+    font-family: 'Fira Code', monospace;
+}
+#terminal{
+    display: flex;
+  align-items: center;
+  
+  /* Remove the next line if you want the span to appear next to the h1 */
+  justify-content: space-between;
+  
+  border-bottom: 1px solid #000;
+  padding: 10px 30px;
+}
+.name{
+  background-color: violet;
+  width: auto;
+}
+#window{
+    opacity: 70%;
+    border-radius: 10px;
+    height: 50vh;
+    width: 50vw;
+    color: white;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.window-text{
+    width: 100px;
+    display: flex;
+    color: white;
+    width: 74%;
+    justify-content: center;
+}
+
+  .wrapper {
+    margin-top: -1px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  
+  .btn:last-child {
+    margin-right: 0;
+  }
+  
+  
+  .close-btn {
+    background: #FF5D5B;
+    border: 1px solid #CF544D;
+  }
+  
+  .min-btn {
+    background: #FFBB39;
+    border: 1px solid #CFA64E;
+  }
+  
+  .max-btn {
+    background: #00CD4E;
+    border: 1px solid #0EA642;
+  }
+  
+  .not-btn{
+    background: #212121;
+    border: 1px solid #0f0f0f;
+  }
+  
+
+  body {
+    background-color: #111111;
+    margin: 0;
+    overflow-x: hidden;
+  }
+  
+  .bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+    background-repeat: repeat;
+    animation: bg-animation .2s infinite;
+    opacity: .9;
+    visibility: visible;
+  }
+  
+  @keyframes bg-animation {
+      0% { transform: translate(0,0) }
+      10% { transform: translate(-5%,-5%) }
+      20% { transform: translate(-10%,5%) }
+      30% { transform: translate(5%,-10%) }
+      40% { transform: translate(-5%,15%) }
+      50% { transform: translate(-10%,5%) }
+      60% { transform: translate(15%,0) }
+      70% { transform: translate(0,10%) }
+      80% { transform: translate(-15%,0) }
+      90% { transform: translate(10%,5%) }
+      100% { transform: translate(5%,0) }
+  }@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+  body {
+    background-color: #131417;  
+  }
+  p {
+    text-shadow: 0 0 7px rgba(255,255,255,.3), 0 0 3px rgba(255,255,255,.3);
+  }
+#main-content{
+    opacity: 0;
+}
+  .main-content{
+    transition: 1.5s;
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    color: white;
+    font-size: 40px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 30%;
+    text-shadow: 0 0 7px rgba(255,255,255,.3), 0 0 3px rgba(255,255,255,.3);
+  }@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+  .child{
+    display: flex;
+    justify-content:space-evenly;
+  }
+  
+  .container{
+    color: #e5e5e5;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .greet{
+    width: 100%;
+    font-size: 3rem;
+    margin-bottom: -30px;
+  }
+
+  .socials{
+    text-transform: uppercase;
+    font-size: 50px;
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 35rem;
+    font-size: 1.5rem;
+    display: inline-block;
+    justify-content:space-evenly;
+
+  }
+  .animation {
+    height:50px;
+    overflow:hidden;
+    margin-left: 1rem;
+    margin-top: 30px;
+  }
+  
+  .animation > div > div {
+    padding: 0.25rem 0.75rem;
+    height:2.81rem;
+    margin-bottom: 2.81rem;
+    display:inline-block;
+  }
+  
+  .animation div:first-child {
+    transition: 0.1s;
+    animation: text-animation 12s infinite;
+  }
+
+  .animation div:first-child:hover{
+    transition: 0.1s;
+    background-color: rebeccapurple;
+  }
+  
+  /* .first div {
+    background-color:#20a7d8;
+  }
+  .second div {
+    background-color:#CD921E;
+  }
+  .third div {
+    background-color:#c10528;
+  } */
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  @keyframes text-animation {
+    0% {margin-top: -0.4%}
+    10% {margin-top: -0.4%;}
+    20% {margin-top: -19.7%;}
+    30% {margin-top: -19.7%;}
+    40% {margin-top: -39.55%;}
+    60% {margin-top: -39.55%;}
+    70% {margin-top: -19.7%;}
+    80% {margin-top: -19.7%;}
+    90% {margin-top: -0.4%;}
+    100% {margin-top: -0.4%;}
+  }
+  
+    </style>
     
     <div class="relative w-screen h-screen" id="sphere">
         <div class="grid-icosahedron w-full h-full bg-black overflow-hidden"></div>
@@ -40,7 +272,7 @@
                     $/~
             </div>
         </div>
-        <div class="main-content">
+        <div id="main-content">
             
             <br>
             <main class="container">
@@ -52,8 +284,8 @@
                 </div>
                 <section class="animation" id="anim">
                   <div class="second"><div>backend engineer</div></div>
-                  <div class="third"><div>devops enthusiast</div></div>
-                  <div class="first"><div>Linux Enjoyer</div></div>
+                  <div class="third"><div>network ethusiast</div></div>
+                  <div class="first"><div>Linux worshipper</div></div>
                 </section>
               </main>
               <div class="socials" id="socials">

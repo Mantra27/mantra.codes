@@ -10781,3 +10781,142 @@ select.form-control:not([multiple]):required:invalid > optgroup {
 .no-scroll {
   overflow: hidden;
 }
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+/* Colors */
+:root {
+  --primary-color: #3a3f58;
+  --secondary-color: #6e758f;
+  --tertiary-color: #a2a6b8;
+  --accent-color: #64b6ac;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Header styles */
+header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Navigation styles */
+nav {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+/* Main content styles */
+main {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+/* Sidebar styles */
+aside {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 200px;
+}
+
+aside h2 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+aside ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+aside li {
+  margin-bottom: 0.5rem;
+}
+
+aside a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+aside a:hover {
+  color: var(--accent-color);
+}
+
+/* Main content area styles */
+.content {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.content h2 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.content button {
+  background-color: var(--accent-color);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.content button:hover {
+  background-color: #4eaaa4;
+}
